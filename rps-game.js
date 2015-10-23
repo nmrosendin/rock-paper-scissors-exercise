@@ -6,10 +6,10 @@ function newGame(){
 
 function winner(playerChoice, computerChoice) {
   if (playerChoice === computerChoice)
-    return "Draw";
+    return "Its a draw";
 
   if (playerChoice === "Paper") {
-    if (ComputerChoice === "Rock") {
+    if (computerChoice === "Rock") {
       return "You win";
     } else if (computerChoice === "Scissors") {
       return "You lose";
@@ -28,6 +28,41 @@ function winner(playerChoice, computerChoice) {
     }
   }
 }
+
+$(document).ready(function() {
+    $("#rock").click(function() {;
+        $.get("http://rock-paper-scissors-api.herokuapp.com/", function(data) {
+          $("#gamestart").hide();
+          $("#pieces-played").text("You played Rock, Computer played " + data);
+          $("#game-results").text(winner("Rock", data));
+          $("#new-game").show();
+        });
+    });
+
+    $("#paper").click(function() {;
+        $.get("http://rock-paper-scissors-api.herokuapp.com/", function(data) {
+          $("#gamestart").hide();
+          $("#pieces-played").text("You played Paper, Computer played " + data);
+          $("#game-results").text(winner("Paper", data));
+          $("#new-game").show();
+        })
+    });
+
+    $("#scissors").click(function() {;
+        $.get("http://rock-paper-scissors-api.herokuapp.com/", function(data) {
+          $("#gamestart").hide();
+          $("#pieces-played").text("You played Scissors, Computer played " + data);
+          $("#game-results").text(winner("Scissors", data));
+          $("#new-game").show();
+        })
+    });
+
+    $("#new-game").click(function() {
+        location.reload();
+        this.hide();
+        })
+   
+});
 
 
 // 1. Add your code below these comments.
